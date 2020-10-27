@@ -16,19 +16,8 @@ public class Restaurant {
 		this.id = id;
 	}
 
-	public String getName() {
-		// TODO Auto-generated method stub
-		return name;
-	}
-
 	public String getInformation() {
 		// TODO Auto-generated method stub
 		return name + " in " + address;
 	}
-
-	public String getAddress() {
-		// TODO Auto-generated method stub
-		return address;
-	}
-
 }
