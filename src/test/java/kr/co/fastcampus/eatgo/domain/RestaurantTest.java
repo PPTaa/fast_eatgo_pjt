@@ -10,7 +10,7 @@ public class RestaurantTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void creation() {
-		Restaurant restaurant = new Restaurant("Bob zip", "seoul");
+		Restaurant restaurant = new Restaurant(1004L, "Bob zip", "seoul");
 		assertThat(restaurant.getName(), is("Bob zip"));
 		assertThat(restaurant.getAddress(), is("seoul"));
 	}
@@ -18,10 +18,8 @@ public class RestaurantTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void information() {
-		Restaurant restaurant = new Restaurant("Bob zip", "seoul");
+		Restaurant restaurant = new Restaurant(1004L, "Bob zip", "seoul");
 		
 		assertThat(restaurant.getInformation(), is("Bob zip in seoul"));
-		
 	}
-	
 }
