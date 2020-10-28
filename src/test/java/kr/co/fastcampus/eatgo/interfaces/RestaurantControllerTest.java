@@ -14,6 +14,9 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import kr.co.fastcampus.eatgo.application.RestaurantService;
+import kr.co.fastcampus.eatgo.domain.MenuItemRepositoryImpl;
+import kr.co.fastcampus.eatgo.domain.MenuItemRepository;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepository;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepositoryImpl;
 
@@ -24,9 +27,16 @@ public class RestaurantControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
+	@SpyBean(RestaurantService.class)
+	private RestaurantService restaurantService;
+	
+	
 	@SpyBean(RestaurantRepositoryImpl.class)
 	private RestaurantRepository restaurantRepository;
 
+	@SpyBean(MenuItemRepositoryImpl.class)
+	private MenuItemRepository menuItemRepositroy;
+	
 	@Test
 	public void list() throws Exception {
 		mvc.perform(get("/restaurant"))
@@ -40,7 +50,8 @@ public class RestaurantControllerTest {
 		mvc.perform(get("/restaurant/1004"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
-			.andExpect(content().string(containsString("\"id\":1004")));
+			.andExpect(content().string(containsString("\"id\":1004")))
+			.andExpect(content().string(containsString("kimchi")));
 		mvc.perform(get("/restaurant/2020"))
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString("\"name\":\"test food\"")))
